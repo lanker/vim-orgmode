@@ -2,8 +2,6 @@
 
 import vim
 
-import os
-
 from orgmode._vim import echo, ORGMODE, apply_count, repeat, realign_tags
 from orgmode.menu import Submenu, ActionEntry
 from orgmode.keybinding import Keybinding, Plug
@@ -34,8 +32,7 @@ class Archive(object):
         if not heading:
             return
 
-        fn = os.path.splitext(vim.current.buffer.name)
-        filename = fn[0] + '_archive' + fn[1]
+        filename = vim.current.buffer.name + '_archive'
         f = open(filename, "a")
         if heading.body:
             f.write("%s\n%s\n" % (heading, "\n".join(heading.body)))
